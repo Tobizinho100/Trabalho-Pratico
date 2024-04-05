@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    header {
+        background-color: #919191;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    #retangulo {
+        width: 400px;
+        height: 100px;
+        background-color: #a5a3a3;
+        position: fixed;
+        bottom: 10px;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    #profile-pic-container {
+        display: flex;
+        align-items: center;
+    }
+
+    #profile-pic {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    #Warning {
+        background-color: #a70808;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: -10px;
+    }
+
+    #nome-usuario {
+        font-size: 20px;
+    }
+
+    #botoes {
+        display: flex;
+        align-items: center;
+    }
+
+    #Yes {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    #No {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        right: 370px; 
+    }
+
+    .botao {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+    <header>
+        <div id="profile-pic-container">
+            <a href="#">
+                <img id="profile-pic" src="AJ Gif.gif" width="100" height="100" alt="Foto do perfil">
+            </a>
+            <h1 id="nome-usuario">Olá Duarte! </h1> <img id="Wave-Emoji" src="Wave Emoji.gif" alt="Wave Emoji" width="80" height="80">
+        </div>
+        <div id="botoes">
+            <button class="botao">Change Profile</button>
+            <button class="botao">Logout</button>
+        </div>
+    </header>
+    <main>
+        <h2>My Tasks</h2>
+        <button id="nova-tarefa" onclick="showTaskForm()">New Task</button>
+        <form id="task-form" style="display: none;">
+            <input type="text" id="task-name" placeholder="Task name">
+            <input type="date" id="task-date">
+            <button type="button" onclick="saveTask()">Save</button>
+            <button type="button" onclick="cancelTask()">Delete</button>
+        </form>
+        <div id="retangulo">
+            <h2 id="Warning">Warning!</h2>
+            <h3>You really want to logout?</h3>
+            <button id="Yes" onclick="Yes()">Yes</button>
+            <button id="No" onclick="No()">No</button>
+        </div>
+    </main>
+    <script>
+        function Yes() {
+            window.location.href = "Site Login.html";
+        }
+        function No() {
+            window.location.href = "Website.html";
+        }
+    </script>
+</body>
+</html>

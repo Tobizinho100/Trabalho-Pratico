@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+    }
+
+    header {
+        background-color: #919191;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    #retangulo {
+        width: 400px;
+        height: 300px;
+        background-color: #a5a3a3;
+        position: fixed;
+        bottom: 160px;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    #profile-pic-container {
+        display: flex;
+        align-items: center;
+    }
+
+    #profile-pic {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    #profile-pic2 {
+        border-radius: 50%;
+        margin-right: -300px;
+        border: none;
+        cursor: pointer;
+        margin-bottom: -75px;
+        transform: translate(-100%, -100%);
+        position: relative;
+    }
+
+    #Change {
+        margin-bottom: 123px;
+        background-color: #a70808;
+        color: #fff;
+        padding: 10px;
+    }
+
+    #nome-usuario {
+        font-size: 20px;
+    }
+
+    #botoes {
+        display: flex;
+        align-items: center;
+    }
+
+    #Save {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    #Cancel {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        right: 350px; 
+    }
+
+    .botao {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+    <header>
+        <div id="profile-pic-container">
+            <a href="#">
+                <img id="profile-pic" src="AJ Gif.gif" width="100" height="100" alt="Foto do perfil">
+            </a>
+            <h1 id="nome-usuario">Olá Duarte! </h1> <img id="Wave-Emoji" src="Wave Emoji.gif" alt="Wave Emoji" width="80" height="80">
+        </div>
+        <div id="botoes">
+            <button class="botao">Change Profile</button>
+            <button class="botao">Logout</button>
+        </div>
+    </header>
+    <main>
+            <h2>My Tasks</h2>
+            <button id="nova-tarefa">New Task</button>
+            <form id="task-form" style="display: none;">
+                <input type="text" id="task-name" placeholder="Task name">
+                <input type="date" id="task-date">
+                <button type="button">Save</button>
+                <button type="button">Delete</button>
+            </form>
+            <section class="tarefas">
+                <article class="tarefa">
+                    <h3>Submit Homework 1</h3>
+                    <p>14-03-2024</p>
+                    <span class="estado">To do</span>
+                    <button>Edit</button>
+                </article>
+                <article class="tarefa">
+                    <h3>Submit Homework 2</h3>
+                    <p>27-03-2024</p>
+                    <span class="estado">To do</span>
+                    <button>Edit</button>
+                </article>
+            </section>
+        <div id="retangulo">
+            <h2 id="Change">Change Profile</h2>
+            <a href="#">
+                <img id="profile-pic2" src="AJ Gif.gif" width="150" height="150" alt="Foto do perfil">
+            </a>
+            <button id="Save" onclick="Save()">Save</button>
+            <button id="Cancel" onclick="Cancel()">Cancel</button>
+        </div>
+    </main>
+    <script>
+        function Save() {
+            window.location.href = "Website.html";
+        }
+        function Cancel() {
+            window.location.href = "Website.html";
+        }
+        function showTaskForm() {
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "block";
+        }
+
+        function saveTask() {
+            var taskName = document.getElementById("task-name").value;
+            var taskDate = document.getElementById("task-date").value;
+            var tasksSection = document.querySelector(".tarefas");
+            var article = document.createElement("article");
+            article.innerHTML = `
+                <h3>${taskName}</h3>
+                <p>${taskDate}</p>
+                <span class="estado">To do</span>
+                <button onclick="editTask(this)">Edit</button>
+                `;
+            tasksSection.appendChild(article);
+
+            document.getElementById("task-name").value = "";
+            document.getElementById("task-date").value = "";
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "none";
+        }
+
+        function cancelTask() {
+            document.getElementById("task-name").value = "";
+            document.getElementById("task-date").value = "";
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "none";
+        }
+
+        function editTask(button) {
+            var article = button.parentElement;
+            var taskName = article.querySelector("h3").textContent;
+            var taskDate = article.querySelector("p").textContent;
+
+            document.getElementById("task-name").value = taskName;
+            document.getElementById("task-date").value = taskDate;
+
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "block";
+
+            article.remove();
+        }
+    </script>
+</body>
+</html>

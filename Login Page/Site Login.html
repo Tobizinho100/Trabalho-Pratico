@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Impetus</title>
+    <style>
+        body {
+            background-image: url("Kimpetus premio.jpg");
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(216, 15, 15, 0.1);
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+        .login-container h2 {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #a70808;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-form input[type="submit"],
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #a70808;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-form input[type="submit"]:hover,
+        .login-form button:hover {
+            background-color: #740505;
+        }
+        .forgot-password button,
+        .create-account button {
+            padding: 5px 5px;
+            background-color: #a70808;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .forgot-password button:hover,
+        .create-account button:hover {
+            background-color: #740505;
+        }
+        .forgot-password,
+        .create-account {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="Kimpetus Logo.png" alt="K-Impetus Logo">
+        </div>
+        <h3>Login</h3>
+        <form class="login-form" id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+        <div class="forgot-password">
+            <button><a href="Forgot Password.html" style="text-decoration: none; color: white;">I forgot my password</a></button>
+        </div>
+        <div class="create-account">
+            <button><a href="Create New Account.html" style="text-decoration: none; color: white;">Create new account</a></button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            if (username !== "" && password !== "") {
+                window.location.href = "Website.html";
+            }
+        });
+    </script>
+</body>
+</html>

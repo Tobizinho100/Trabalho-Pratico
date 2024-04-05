@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background-color: #919191;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header h1 {
+        margin-left: 20px;
+        text-align: center;
+    }
+    
+    main {
+        padding: 20px;
+        display: flex;
+        justify-content: center; /* Centraliza o conteúdo horizontalmente */
+        align-items: center; /* Centraliza o conteúdo verticalmente */
+    }
+    
+    h2 {
+        margin-top: 0;
+    }
+    
+    #profile-pic-container {
+        display: flex;
+        align-items: center;
+    }
+
+    #profile-pic {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    #Wave-Emoji
+
+    #nome-usuario {
+        font-size: 20px;
+    }
+    
+    #botoes {
+        display: flex;
+        align-items: center;
+    }
+
+    .botao {
+        background-color: #a70808;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    table {
+        width: 50%; /* Define a largura da tabela */
+        border-collapse: collapse; /* Junta as bordas das células */
+        margin-top: 20px; /* Espaçamento superior */
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Borda das células */
+        padding: 8px; /* Espaçamento interno das células */
+        text-align: left; /* Alinhamento do texto à esquerda */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Cor de fundo do cabeçalho */
+    }
+</style>
+<body>
+    <header>
+        <div id="profile-pic-container">
+            <a href="#">
+                <img id="profile-pic" src="AJ Gif.gif" width="100" height="100" alt="Foto do perfil">
+            </a>
+            <h1 id="nome-usuario">Olá Duarte! </h1> <img id="Wave-Emoji" src="Wave Emoji.gif" alt="Wave Emoji" width="80" height="80">
+        </div>
+        <div id="botoes">
+            <button class="botao" onclick="Change_Profile()">Change Profile</button>
+            <button class="botao" onclick="Logout()">Logout</button>
+        </div>
+    </header>
+    <main>
+        <h2>My Tasks</h2>
+        <button id="nova-tarefa" onclick="showTaskForm()">New Task</button>
+        <form id="task-form" style="display: none;">
+            <input type="text" id="task-name" placeholder="Task name">
+            <input type="date" id="task-date">
+            <button type="button" onclick="saveTask()">Save</button>
+            <button type="button" onclick="cancelTask()">Delete</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="task-list">
+                <tr>
+                    <td>Submit Homework 1</td>
+                    <td>14-03-2024</td>
+                    <td>
+                        <button onclick="editTask(this)">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Submit Homework 2</td>
+                    <td>27-03-2024</td>
+                    <td>
+                        <button onclick="editTask(this)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function Logout() {
+            window.location.href = "Warning Logout.html";
+        }
+
+        function Change_Profile(){
+            window.location.href = "Change Profile.html";
+        }
+
+        function showTaskForm() {
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "block";
+        }
+
+        function saveTask() {
+            var taskName = document.getElementById("task-name").value;
+            var taskDate = document.getElementById("task-date").value;
+            var taskList = document.getElementById("task-list");
+
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${taskName}</td>
+                <td>${taskDate}</td>
+                <td>
+                    <button onclick="editTask(this)">Edit</button>
+                </td>
+            `;
+            taskList.appendChild(newRow);
+
+            document.getElementById("task-name").value = "";
+            document.getElementById("task-date").value = "";
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "none";
+        }
+
+        function cancelTask() {
+            document.getElementById("task-name").value = "";
+            document.getElementById("task-date").value = "";
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "none";
+        }
+
+        function editTask(button) {
+            var row = button.parentElement.parentElement;
+            var taskName = row.cells[0].textContent;
+            var taskDate = row.cells[1].textContent;
+
+            document.getElementById("task-name").value = taskName;
+            document.getElementById("task-date").value = taskDate;
+
+            var taskForm = document.getElementById("task-form");
+            taskForm.style.display = "block";
+
+            row.remove();
+        }
+    </script>
+</body>
+</html>
